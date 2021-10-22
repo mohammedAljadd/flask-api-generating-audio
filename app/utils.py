@@ -19,20 +19,29 @@ def the_image_exists(image_name):
 
 
  
+def get_text(language):
+            match language:
+                case 'en':
+                    return ["The file exists and its name is", "We're sorry, the file doesn't exist"]
+                case 'fr':
+                    return ["Le fichier existe et son nom est", "Nous sommes désolés, le fichier n'existe pas"]
+                case _:        
+                    return ["Die Datei existiert und ihr Name ist", "Es tut uns leid, die Datei existiert nicht"]
 
-
-def generate_audio(image_name):
-    language = 'en'
+def generate_audio(image_name, language):
+    language = language
 
     if the_image_exists(image_name):
+
+
         audio = gTTS(
-            text=f"The file exists and its name is  {image_name}", 
+            text=f"{get_text(language)[0]}{image_name}", 
             lang=language, slow=False
             )
     
     else:
         audio = gTTS(
-            text=f"We are sorry, the file doesn't exist, please search for another file", 
+            text=f"{get_text(language)[1]}", 
             lang=language, slow=False
             )
         

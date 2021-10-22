@@ -1,6 +1,4 @@
 # import app variable (app = Flask(__name__) in __init__.py) from app package that we've created 
-
-import re
 from app import app
 from flask import request, send_from_directory
 from app.utils import *
@@ -18,8 +16,9 @@ def get_response():
             req = request.get_json()
             searched_file = req.get("image_name")
 
-            # Python will tel us weather or not the file exists
-            generate_audio(searched_file)
+            # Python will tel us weather or not the file exists. Choose :
+            # en for english, de for german and fr for french
+            generate_audio(searched_file, 'de')
  
     try:
         return send_from_directory(
